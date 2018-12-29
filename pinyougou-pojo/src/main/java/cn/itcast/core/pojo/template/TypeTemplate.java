@@ -20,6 +20,18 @@ public class TypeTemplate implements Serializable {
      */
     private String brandIds;
 
+
+
+    private Long status;
+
+    public Long getStatus() {
+        return status;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
     /**
      * 自定义属性
      */

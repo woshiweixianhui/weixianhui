@@ -21,6 +21,17 @@ public class ItemCat implements Serializable {
     /**
      * 类型id
      */
+
+    private Long status;
+
+    public Long getStatus() {
+        return status;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
     private Long typeId;
 
     private static final long serialVersionUID = 1L;

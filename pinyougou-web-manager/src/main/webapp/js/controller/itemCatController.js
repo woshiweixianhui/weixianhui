@@ -107,15 +107,27 @@ app.controller('itemCatController' ,function($scope,$controller   ,itemCatServic
 		
 		$scope.findByParentId(p_entity.id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-    
+
+
+    $scope.status = ["未审核","审核通过","审核未通过","关闭"];
+    // 审核的方法:
+    $scope.updateStatus = function(status){
+        itemCatService.updateStatus($scope.selectIds,status).success(function(response){
+            if(response.flag){
+                $scope.reloadList();//刷新列表
+                $scope.selectIds = [];
+            }else{
+                alert(response.message);
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
 });	

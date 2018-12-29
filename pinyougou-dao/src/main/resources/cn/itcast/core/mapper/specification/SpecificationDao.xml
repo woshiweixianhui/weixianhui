@@ -65,7 +65,7 @@
   </sql>
   <sql id="Base_Column_List" >
     <if test="fields == null" >
-      id, spec_name
+      id, spec_name,status
     </if>
     <if test="fields != null" >
       ${fields}
@@ -160,6 +160,9 @@
     <set >
       <if test="specName != null" >
         spec_name = #{specName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIGINT}
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}

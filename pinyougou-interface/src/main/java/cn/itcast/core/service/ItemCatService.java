@@ -10,4 +10,6 @@ public interface ItemCatService {
     ItemCat findOne(Long id);
 
     List<ItemCat> findAll();
+
+    void updateStatus(Long[] ids , String status);
 }

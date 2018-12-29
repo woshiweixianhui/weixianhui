@@ -1,14 +1,19 @@
 package cn.itcast.core.controller;
 
 import cn.itcast.core.pojo.good.Brand;
+import cn.itcast.core.pojo.good.Goods;
 import cn.itcast.core.service.BrandService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import entity.PageResult;
 import entity.Result;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
 import java.util.List;
 import java.util.Map;
 
@@ -91,6 +96,19 @@ public class BrandController  {
     @RequestMapping("/selectOptionList")
     public List<Map> selectOptionList(){
         return brandService.selectOptionList();
+    }
+
+
+    //开始审核 (1:通过 2:驳回)
+    @RequestMapping("/updateStatus")
+    public Result updateStatus(Long[] ids ,String status){
+        try {
+            brandService.updateStatus(ids,status);
+            return new Result(true,"成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"失败");
+        }
     }
 
 }

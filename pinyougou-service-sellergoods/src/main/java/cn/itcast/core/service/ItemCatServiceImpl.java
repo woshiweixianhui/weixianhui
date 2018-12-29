@@ -25,9 +25,9 @@ public class ItemCatServiceImpl implements  ItemCatService {
         //1:从Mysql查询所有分类结果集
         List<ItemCat> itemCats = findAll();//1000+
         //2:保存缓存一份
-        for (ItemCat itemCat : itemCats) {
-            redisTemplate.boundHashOps("itemCat").put(itemCat.getName(),itemCat.getTypeId());
-        }
+//        for (ItemCat itemCat : itemCats) {
+//            redisTemplate.boundHashOps("itemCat").put(itemCat.getName(),itemCat.getTypeId());
+//        }
         ItemCatQuery query = new ItemCatQuery();
         query.createCriteria().andParentIdEqualTo(parentId);
         return itemCatDao.selectByExample(query);
@@ -41,6 +41,27 @@ public class ItemCatServiceImpl implements  ItemCatService {
     @Override
     public List<ItemCat> findAll() {
         return itemCatDao.selectByExample(null);
+    }
+
+
+    @Override
+    public void updateStatus(Long[] ids, String status) {
+
+
+
+
+
+        ItemCat itemCat = new ItemCat();
+        itemCat.setStatus(Long.parseLong(status));
+        if (ids!=null&&ids.length>0){
+            for (Long id : ids) {
+                itemCat.setId(id);
+                //商品表的ID
+
+                itemCatDao.updateByPrimaryKeySelective(itemCat);
+            }
+
+        }
     }
 
 }

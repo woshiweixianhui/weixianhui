@@ -19,6 +19,17 @@ public class Brand implements Serializable {
 
     private Date birthday;
 
+
+    public Long getStatus() {
+        return status;
+    }
+
+    public void setStatus(Long status) {
+        this.status = status;
+    }
+
+    private Long status;
+
     private static final long serialVersionUID = 1L;
 
     public Long getId() {

@@ -18,4 +18,6 @@ public interface SpecificationService {
 
     List<Map> selectOptionList();
 
+    void updateStatus(Long[] ids ,String status);
+
 }

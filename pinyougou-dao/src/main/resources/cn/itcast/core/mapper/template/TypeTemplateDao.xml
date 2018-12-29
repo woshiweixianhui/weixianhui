@@ -68,7 +68,7 @@
   </sql>
   <sql id="Base_Column_List" >
     <if test="fields == null" >
-      id, name, spec_ids, brand_ids, custom_attribute_items
+      id, name, spec_ids, brand_ids, custom_attribute_items,status
     </if>
     <if test="fields != null" >
       ${fields}
@@ -201,6 +201,9 @@
       </if>
       <if test="customAttributeItems != null" >
         custom_attribute_items = #{customAttributeItems,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}

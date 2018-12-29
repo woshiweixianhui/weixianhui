@@ -99,4 +99,26 @@ public class TypeTemplateServiceImpl implements TypeTemplateService {
 
         return listMap;
     }
+
+
+
+    @Override
+    public void updateStatus(Long[] ids, String status) {
+
+
+
+
+
+        TypeTemplate typeTemplate = new TypeTemplate();
+        typeTemplate.setStatus(Long.parseLong(status));
+        if (ids!=null&&ids.length>0){
+            for (Long id : ids) {
+                typeTemplate.setId(id);
+                //商品表的ID
+
+                typeTemplateDao.updateByPrimaryKeySelective(typeTemplate);
+            }
+
+        }
+    }
 }

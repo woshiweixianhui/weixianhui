@@ -106,5 +106,25 @@ public class SpecificationServiceImpl implements  SpecificationService {
         return specificationDao.selectOptionList();
     }
 
+    @Override
+    public void updateStatus(Long[] ids, String status) {
+
+
+
+
+
+        Specification specification = new Specification();
+        specification.setStatus(Long.parseLong(status));
+        if (ids!=null&&ids.length>0){
+            for (Long id : ids) {
+                specification.setId(id);
+                //商品表的ID
+
+                specificationDao.updateByPrimaryKeySelective(specification);
+            }
+
+        }
+    }
+
 
 }
